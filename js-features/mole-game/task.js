@@ -2,8 +2,8 @@ function getHole(index) {
   return document.getElementById(`hole${index}`);
 }
 
-let wins = 0;
-let losses = 0;
+let dead = 0;
+let lost = 0;
 
 function setMole() {
   for (let i = 1; i <= 9; i++) {
@@ -17,21 +17,21 @@ function setMole() {
 function holeClickHandler(event) {
   const hole = event.currentTarget;
   if (hole.classList.contains('hole_has-mole')) {
-    wins++;
+    dead++;
   } else {
-    losses++;
+    lost++;
   }
 
-  const winsCounter = document.getElementById('wins');
-  const lossesCounter = document.getElementById('losses');
-  if (winsCounter) winsCounter.textContent = wins;
-  if (lossesCounter) lossesCounter.textContent = losses;
+  const deadCounter = document.getElementById('dead');
+  const lostCounter = document.getElementById('lost');
+  if (deadCounter) deadCounter.textContent = dead;
+  if (lostCounter) lostCounter.textContent = lost;
 
 
-  if (wins >= 10) {
+  if (dead >= 10) {
     alert('Вы выиграли! Поздравляем!');
     resetGame();
-  } else if (losses >= 5) {
+  } else if (lost >= 5) {
     alert('Вы проиграли. Попробуйте снова.');
     resetGame();
   } else {
@@ -41,12 +41,12 @@ function holeClickHandler(event) {
 
 
 function resetGame() {
-  wins = 0;
-  losses = 0;
-  const winsCounter = document.getElementById('wins');
-  const lossesCounter = document.getElementById('losses');
-  if (winsCounter) winsCounter.textContent = wins;
-  if (lossesCounter) lossesCounter.textContent = losses;
+  dead = 0;
+  lost = 0;
+  const deadCounter = document.getElementById('dead');
+  const lostCounter = document.getElementById('lost');
+  if (deadCounter) deadCounter.textContent = dead;
+  if (lostCounter) lostCounter.textContent = lost;
   setMole();
 }
 
